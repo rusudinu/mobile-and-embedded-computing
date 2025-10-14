@@ -3,6 +3,9 @@ name: Convert All PowerPoint to PDF
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   convert-all-to-pdf:
     runs-on: ubuntu-latest

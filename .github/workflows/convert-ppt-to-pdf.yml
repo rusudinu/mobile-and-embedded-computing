@@ -6,6 +6,9 @@ on:
       - '**.ppt'
       - '**.pptx'
 
+permissions:
+  contents: write
+
 jobs:
   convert-to-pdf:
     runs-on: ubuntu-latest
