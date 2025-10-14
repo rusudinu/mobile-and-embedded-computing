@@ -1,0 +1,70 @@
+name: Convert PowerPoint to PDF
+
+on:
+  push:
+    paths:
+      - '**.ppt'
+      - '**.pptx'
+
+jobs:
+  convert-to-pdf:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 2
+
+      - name: Install LibreOffice
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libreoffice
+
+      - name: Get changed PowerPoint files
+        id: changed-files
+        run: |
+          # Get list of changed .ppt and .pptx files
+          git diff --name-only HEAD^ HEAD | grep -E '\.(ppt|pptx)$' > changed_files.txt || true
+
+          if [ -s changed_files.txt ]; then
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          else
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Convert PowerPoint files to PDF
+        if: steps.changed-files.outputs.has_changes == 'true'
+        run: |
+          while IFS= read -r file; do
+            if [ -f "$file" ]; then
+              # Get directory and filename without extension
+              dir=$(dirname "$file")
+              filename=$(basename "$file")
+              name="${filename%.*}"
+
+              echo "Converting $file to PDF..."
+
+              # Convert to PDF using LibreOffice
+              libreoffice --headless --convert-to pdf --outdir "$dir" "$file"
+
+              echo "Created ${dir}/${name}.pdf"
+            fi
+          done < changed_files.txt
+
+      - name: Commit PDF files
+        if: steps.changed-files.outputs.has_changes == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+          # Add all PDF files
+          git add "**.pdf"
+
+          # Check if there are changes to commit
+          if git diff --staged --quiet; then
+            echo "No PDF changes to commit"
+          else
+            git commit -m "Auto-generate PDFs from PowerPoint files"
+            git push
+          fi
