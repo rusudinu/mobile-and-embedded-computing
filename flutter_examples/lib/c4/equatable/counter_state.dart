@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 
 // without equatable - and Flutter won't know
 // that the state has changed
