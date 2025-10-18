@@ -10,6 +10,9 @@
       <excludeFolder url="file://$MODULE_DIR$/w2/c2/flutter_demo/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/w2/c2/flutter_demo/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/w2/c2/flutter_demo/build" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_examples/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_examples/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_examples/build" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
