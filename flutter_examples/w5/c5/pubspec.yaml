@@ -1,0 +1,22 @@
+name: c5_examples
+description: Examples for Flutter HTTP libraries, retries, and hedging patterns
+version: 1.0.0
+publish_to: none
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  # HTTP libraries
+  http: ^1.1.0              # Simple HTTP client with RetryClient support
+  dio: ^5.4.0               # Feature-rich HTTP client with interceptors
+  chopper: ^7.1.0           # Declarative REST API client
+  retrofit: ^4.0.0          # Type-safe REST API client with annotations
+  json_annotation: ^4.8.0   # JSON serialization annotations
+
+dev_dependencies:
+  # Code generation
+  build_runner: ^2.4.0           # Build system for Dart code generation
+  chopper_generator: ^7.1.0      # Code generator for Chopper
+  retrofit_generator: ^8.0.0     # Code generator for Retrofit
+  json_serializable: ^6.7.0      # JSON serialization code generator
