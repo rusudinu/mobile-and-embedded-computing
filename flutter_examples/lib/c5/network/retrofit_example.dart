@@ -14,6 +14,7 @@
 
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
+import 'package:retrofit/http.dart' as http;
 import 'package:json_annotation/json_annotation.dart';
 
 part 'retrofit_example.g.dart';
@@ -96,7 +97,7 @@ abstract class Api {
 
   // GET with custom headers
   @GET('/users/{id}')
-  @Headers(<String, String>{
+  @http.Headers(<String, String>{
     'Accept': 'application/json',
     'Custom-Header': 'MyValue',
   })
@@ -104,11 +105,11 @@ abstract class Api {
 
   // Multiple query parameters
   @GET('/posts')
-  Future<List<Item>> searchPosts(
-    @Query('q') String query,
+  Future<List<Item>> searchPosts({
+    @Query('q') String? query,
     @Query('_sort') String? sortBy,
     @Query('_order') String? order,
-  );
+  });
 
   // Response with HttpResponse for access to headers and status
   @GET('/posts/{id}')
@@ -199,7 +200,7 @@ void main() async {
   // Search posts
   print('\n=== Search Posts ===');
   try {
-    final results = await api.searchPosts('sunt', sortBy: 'id', order: 'desc');
+    final results = await api.searchPosts(query: 'sunt', sortBy: 'id', order: 'desc');
     print('Found ${results.length} posts');
   } catch (e) {
     print('Error: $e');

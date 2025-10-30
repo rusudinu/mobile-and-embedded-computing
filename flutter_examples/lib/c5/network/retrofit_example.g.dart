@@ -267,7 +267,11 @@ class _Api implements Api {
   Future<User> getUser(int id) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{
+      r'Accept': 'application/json',
+      r'Custom-Header': 'MyValue',
+    };
+    _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<User>(Options(
       method: 'GET',
@@ -297,11 +301,11 @@ class _Api implements Api {
   }
 
   @override
-  Future<List<Item>> searchPosts(
-    String query,
+  Future<List<Item>> searchPosts({
+    String? query,
     String? sortBy,
     String? order,
-  ) async {
+  }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'q': query,

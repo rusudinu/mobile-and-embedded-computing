@@ -24,43 +24,43 @@ abstract class PostService extends ChopperService {
   }
 
   @Get(path: '/{id}')
-  Future<Response<Post>> getPost(@Path('id') int id);
+  Future<Response<PostModel>> getPost(@Path('id') int id);
 
   @Get()
-  Future<Response<List<Post>>> getPosts();
+  Future<Response<List<PostModel>>> getPosts();
 
   @Post()
-  Future<Response<Post>> createPost(@Body() Map<String, dynamic> post);
+  Future<Response<PostModel>> createPost(@Body() PostModel post);
 
   @Put(path: '/{id}')
-  Future<Response<Post>> updatePost(
+  Future<Response<PostModel>> updatePost(
     @Path('id') int id,
-    @Body() Post post,
+    @Body() PostModel post,
   );
 
   @Delete(path: '/{id}')
   Future<Response<void>> deletePost(@Path('id') int id);
 
   @Get(path: '', headers: {'Custom-Header': 'Value'})
-  Future<Response<List<Post>>> getPostsWithHeaders();
+  Future<Response<List<PostModel>>> getPostsWithHeaders();
 }
 
 // Model class
-class Post {
+class PostModel {
   final int? id;
   final String title;
   final String body;
   final int userId;
 
-  Post({
+  PostModel({
     this.id,
     required this.title,
     required this.body,
     required this.userId,
   });
 
-  factory Post.fromJson(Map<String, dynamic> json) {
-    return Post(
+  factory PostModel.fromJson(Map<String, dynamic> json) {
+    return PostModel(
       id: json['id'] as int?,
       title: json['title'] as String,
       body: json['body'] as String,
@@ -78,19 +78,19 @@ class Post {
   }
 }
 
-// JSON converter for Post
+// JSON converter for PostModel
 class PostConverter extends JsonConverter {
   @override
   FutureOr<Response<BodyType>> convertResponse<BodyType, InnerType>(Response response) {
     if (response.body is Map) {
       return response.copyWith<BodyType>(
-        body: Post.fromJson(response.body as Map<String, dynamic>) as BodyType,
+        body: PostModel.fromJson(response.body as Map<String, dynamic>) as BodyType,
       );
     }
 
     if (response.body is List) {
       final posts = (response.body as List)
-          .map((item) => Post.fromJson(item as Map<String, dynamic>))
+          .map((item) => PostModel.fromJson(item as Map<String, dynamic>))
           .toList();
       return response.copyWith<BodyType>(body: posts as BodyType);
     }
@@ -136,19 +136,19 @@ void main() async {
 
   // Create a post
   print('\n=== Create Post ===');
-  final newPost = Post(
+  final newPost = PostModel(
     title: 'New Post',
     body: 'This is a new post',
     userId: 1,
   );
-  final createResponse = await postService.createPost(newPost.toJson());
+  final createResponse = await postService.createPost(newPost);
   if (createResponse.isSuccessful) {
     print('Created post with ID: ${createResponse.body!.id}');
   }
 
   // Update a post
   print('\n=== Update Post ===');
-  final updatedPost = Post(
+  final updatedPost = PostModel(
     id: 1,
     title: 'Updated Title',
     body: 'Updated body',

@@ -1,6 +1,7 @@
 // Manual retry implementation with error classification and jitter strategies
 // No additional dependencies needed
 
+import 'dart:async';
 import 'dart:math';
 import 'dart:io';
 
