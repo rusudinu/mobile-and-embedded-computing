@@ -1,6 +1,7 @@
 // dart:io HttpClient - Low-level HTTP client with TLS and socket control
 // No additional dependencies needed - part of dart:io
 
+import 'dart:async';
 import 'dart:io';
 import 'dart:convert';
 

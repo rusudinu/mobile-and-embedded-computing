@@ -9,6 +9,7 @@
 // Run: dart run build_runner build
 // Or: dart run build_runner watch
 
+import 'dart:async';
 import 'package:chopper/chopper.dart';
 
 // The generated code will be in chopper_example.chopper.dart
@@ -29,7 +30,7 @@ abstract class PostService extends ChopperService {
   Future<Response<List<Post>>> getPosts();
 
   @Post()
-  Future<Response<Post>> createPost(@Body() Post post);
+  Future<Response<Post>> createPost(@Body() Map<String, dynamic> post);
 
   @Put(path: '/{id}')
   Future<Response<Post>> updatePost(
@@ -80,7 +81,7 @@ class Post {
 // JSON converter for Post
 class PostConverter extends JsonConverter {
   @override
-  Response<BodyType> convertResponse<BodyType, InnerType>(Response response) {
+  FutureOr<Response<BodyType>> convertResponse<BodyType, InnerType>(Response response) {
     if (response.body is Map) {
       return response.copyWith<BodyType>(
         body: Post.fromJson(response.body as Map<String, dynamic>) as BodyType,
@@ -140,7 +141,7 @@ void main() async {
     body: 'This is a new post',
     userId: 1,
   );
-  final createResponse = await postService.createPost(newPost);
+  final createResponse = await postService.createPost(newPost.toJson());
   if (createResponse.isSuccessful) {
     print('Created post with ID: ${createResponse.body!.id}');
   }

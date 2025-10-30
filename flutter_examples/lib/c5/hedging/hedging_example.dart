@@ -192,7 +192,7 @@ class HedgingConfig {
   final int maxConcurrentRequests;
   final bool cancelSlowerRequests;
 
-  HedgingConfig({
+  const HedgingConfig({
     this.delay = const Duration(milliseconds: 120),
     this.maxConcurrentRequests = 2,
     this.cancelSlowerRequests = true,
