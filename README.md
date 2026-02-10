@@ -8,3 +8,6 @@ Each week folder will have a course (c1) folder and a lab (l1) folder.
 General flutter code demos are showcased in the flutter_examples folder at the root of the repository.
 
 Each topic will have its own folder in that project, inside the lib folder.
+
+## Contributing
+You are welcome to contribute with PRs to this repository if you find any errors in the code.
