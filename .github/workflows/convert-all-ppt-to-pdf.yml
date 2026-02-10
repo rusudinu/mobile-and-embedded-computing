@@ -22,19 +22,30 @@ jobs:
 
       - name: Find and convert all PowerPoint files
         run: |
-          # Find all .ppt and .pptx files
-          find . -type f \( -name "*.ppt" -o -name "*.pptx" \) | while IFS= read -r file; do
-            # Get directory and filename without extension
-            dir=$(dirname "$file")
+          # Create output directories
+          mkdir -p lectures-pdf labs-pdf
+
+          # Find all .ppt and .pptx files in lectures and labs directories
+          find lectures labs -type f \( -name "*.ppt" -o -name "*.pptx" \) | while IFS= read -r file; do
             filename=$(basename "$file")
             name="${filename%.*}"
+            
+            # Determine output directory
+            if [[ "$file" == lectures/* ]]; then
+                outdir="lectures-pdf"
+            elif [[ "$file" == labs/* ]]; then
+                outdir="labs-pdf"
+            else
+                echo "Skipping $file (not in target directories)"
+                continue
+            fi
 
-            echo "Converting $file to PDF..."
+            echo "Converting $file to PDF in $outdir..."
 
             # Convert to PDF using LibreOffice
-            libreoffice --headless --convert-to pdf --outdir "$dir" "$file"
+            libreoffice --headless --convert-to pdf --outdir "$outdir" "$file"
 
-            echo "Created ${dir}/${name}.pdf"
+            echo "Created ${outdir}/${name}.pdf"
           done
 
       - name: Commit PDF files
@@ -42,8 +53,8 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
 
-          # Add all PDF files
-          git add "**.pdf"
+          # Add all PDF files in output directories
+          git add lectures-pdf labs-pdf
 
           # Check if there are changes to commit
           if git diff --staged --quiet; then

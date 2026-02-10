@@ -40,19 +40,30 @@ jobs:
       - name: Convert PowerPoint files to PDF
         if: steps.changed-files.outputs.has_changes == 'true'
         run: |
+          # Create output directories
+          mkdir -p lectures-pdf labs-pdf
+
           while IFS= read -r file; do
             if [ -f "$file" ]; then
-              # Get directory and filename without extension
-              dir=$(dirname "$file")
               filename=$(basename "$file")
               name="${filename%.*}"
 
-              echo "Converting $file to PDF..."
+              # Determine output directory
+              if [[ "$file" == lectures/* ]]; then
+                  outdir="lectures-pdf"
+              elif [[ "$file" == labs/* ]]; then
+                  outdir="labs-pdf"
+              else
+                  echo "Skipping $file (not in target directories)"
+                  continue
+              fi
+
+              echo "Converting $file to PDF in $outdir..."
 
               # Convert to PDF using LibreOffice
-              libreoffice --headless --convert-to pdf --outdir "$dir" "$file"
+              libreoffice --headless --convert-to pdf --outdir "$outdir" "$file"
 
-              echo "Created ${dir}/${name}.pdf"
+              echo "Created ${outdir}/${name}.pdf"
             fi
           done < changed_files.txt
 
@@ -62,8 +73,8 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
 
-          # Add all PDF files
-          git add "**.pdf"
+          # Add all PDF files in output directories
+          git add lectures-pdf labs-pdf
 
           # Check if there are changes to commit
           if git diff --staged --quiet; then
