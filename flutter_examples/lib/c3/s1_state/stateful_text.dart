@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class StatelessText extends StatefulWidget {
-  const StatelessText({super.key});
+class StatefulText extends StatefulWidget {
+  const StatefulText({super.key});
 
   @override
-  State<StatelessText> createState() => _StatelessTextState();
+  State<StatefulText> createState() => _StatefulTextState();
 }
 
-class _StatelessTextState extends State<StatelessText> {
+class _StatefulTextState extends State<StatefulText> {
   int count = 0;
 
   void increment() {
