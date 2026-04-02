@@ -30,6 +30,15 @@ This repository contains a set of small, focused examples designed to teach stud
 - **Dynamic Rendering:** Utilizing `ListView.builder` for efficiently rendering large or infinite lists on demand (lazy loading), rather than building them all at once in memory.
 - **List items:** Using `ListTile` and `CircleAvatar` for standard Material Design list rows.
 
+### 6. Network Requests (`lib/network/main.dart`)
+- **Dependencies:** Adding external packages like `http` via pubspec.
+- **Async Operations:** Using `Future`, `async`, and `await` to fetch data asynchronously without blocking the UI.
+- **Loading States:** Managing UI loading states (`_isLoading`) while waiting for the network response.
+
+### 7. Equatable (`lib/equatable/main.dart`)
+- **Object Comparison:** Demonstrating the problem with default class equality (referential equality) versus value equality.
+- **Using Equatable:** Inheriting from `Equatable` and overriding `props` to easily compare objects based on their values.
+
 ---
 
 ## How to Run the Code

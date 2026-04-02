@@ -4,6 +4,8 @@ import 'basic_widgets/main.dart' as basic;
 import 'stateful_widget/main.dart' as stateful;
 import 'navigation/main.dart' as nav;
 import 'list/main.dart' as list;
+import 'network/main.dart' as net;
+import 'equatable/main.dart' as eq;
 
 void main() {
   runApp(const AppSwitcher());
@@ -67,6 +69,22 @@ class HomePage extends StatelessWidget {
             onTap: () {
               Navigator.of(context).push(
                 MaterialPageRoute(builder: (_) => const list.ListApp()),
+              );
+            },
+          ),
+          ListTile(
+            title: const Text('6. HTTP Network'),
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => const net.NetworkApp()),
+              );
+            },
+          ),
+          ListTile(
+            title: const Text('7. Equatable'),
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => const eq.EquatableApp()),
               );
             },
           ),

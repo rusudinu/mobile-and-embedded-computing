@@ -16,6 +16,9 @@
       <excludeFolder url="file://$MODULE_DIR$/flutter_examples/w5/c5/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/flutter_examples/w5/c5/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/flutter_examples/w5/c5/build" />
+      <excludeFolder url="file://$MODULE_DIR$/other-presentations/he/demo/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/other-presentations/he/demo/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/other-presentations/he/demo/build" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
