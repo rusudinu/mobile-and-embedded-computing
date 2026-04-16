@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:equatable/equatable.dart';
 
 void main() {
+  print(2 == 2);
+  EquatablePerson a = new EquatablePerson("B", 20);
+  EquatablePerson b = new EquatablePerson("C", 10);
+  print(a == b);
   runApp(const EquatableApp());
 }
 
