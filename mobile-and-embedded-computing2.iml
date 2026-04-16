@@ -19,6 +19,12 @@
       <excludeFolder url="file://$MODULE_DIR$/other-presentations/he/demo/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/other-presentations/he/demo/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/other-presentations/he/demo/build" />
+      <excludeFolder url="file://$MODULE_DIR$/other-presentations/he/demo2/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/other-presentations/he/demo2/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/other-presentations/he/demo2/build" />
+      <excludeFolder url="file://$MODULE_DIR$/other-presentations/onia/demo/mcp_demo/.venv" />
+      <excludeFolder url="file://$MODULE_DIR$/other-presentations/onia/demo/mcp_rag_demo/.venv" />
+      <excludeFolder url="file://$MODULE_DIR$/other-presentations/onia/demo/rag_demo/.venv" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

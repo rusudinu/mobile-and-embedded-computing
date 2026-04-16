@@ -73,7 +73,7 @@ uv run ingest_and_chat.py
 Ask your own question:
 
 ```bash
-uv run ingest_and_chat.py --question "What is the ONIA conference?"
+uv run ingest_and_chat.py --question "What is ONIA and where is the official site?"
 ```
 
 Interactive REPL (good for live Q&A on stage):
@@ -144,7 +144,7 @@ rag_demo/
 ├── ingest_and_chat.py     # single-file RAG pipeline entrypoint
 └── documents/
     ├── lm_studio.md
-    ├── onia_conference.md
+    ├── onia_conference.md   # ONIA / olimpiada-ai.ro
     ├── qwen_models.md
     └── rag_overview.md
 ```

@@ -1,9 +1,9 @@
-# ONIA Conference
+# ONIA
 
-ONIA is an annual academic conference focused on mobile and embedded computing.
-The 2026 edition takes place in Tel Aviv and features tracks on on-device AI,
-tiny language models, and privacy-preserving machine learning.
+ONIA is the programme behind Romania’s **National Artificial Intelligence
+Olympiad** (*Olimpiada de Inteligență Artificială*). It covers training,
+competition rounds, and resources for students and educators working on AI
+and related topics.
 
-The opening keynote is delivered by the chair of the mobile computing track,
-and the conference traditionally ends with a hands-on demo session where
-presenters ship working prototypes on real hardware.
+The official site (including the English section) is
+[olimpiada-ai.ro/en](https://olimpiada-ai.ro/en).

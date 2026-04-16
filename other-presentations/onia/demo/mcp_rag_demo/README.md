@@ -106,7 +106,7 @@ Agentic MCP + RAG path
 
 ```bash
 uv run client_agent.py --fallback
-uv run client_agent.py --fallback -q "What is ONIA?"
+uv run client_agent.py --fallback -q "What is ONIA and what is the official URL?"
 ```
 
 Use this if your loaded chat model's tool-calling support is flaky during
@@ -159,7 +159,7 @@ mcp_rag_demo/
 └── documents/
     ├── mcp_overview.md
     ├── mcp_plus_rag.md
-    ├── onia_conference.md
+    ├── onia_conference.md   # ONIA / olimpiada-ai.ro
     ├── qwen_models.md
     └── rag_overview.md
 ```

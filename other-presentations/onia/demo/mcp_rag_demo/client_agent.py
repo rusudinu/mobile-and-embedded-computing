@@ -38,7 +38,7 @@ from config import Config, load_config
 
 SERVER_SCRIPT = Path(__file__).parent / "server.py"
 DEFAULT_QUESTION = (
-    "What is the ONIA conference and how does MCP relate to RAG in this demo?"
+    "What is ONIA (per the knowledge base) and how does MCP relate to RAG in this demo?"
 )
 
 

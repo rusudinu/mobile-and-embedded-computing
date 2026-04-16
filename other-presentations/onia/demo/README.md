@@ -1,6 +1,7 @@
 # ONIA demos: RAG, MCP, MCP + RAG
 
-Three **independent** Python projects for the ONIA 2026 talk. Each folder
+Three **independent** Python projects for talks about [ONIA](https://olimpiada-ai.ro/en)
+(Romania’s National AI Olympiad). Each folder
 is a standalone [uv](https://docs.astral.sh/uv/) project with its own
 `pyproject.toml`, `uv.lock`, `.env.example`, and README — you can clone
 just one folder and it will still run.
