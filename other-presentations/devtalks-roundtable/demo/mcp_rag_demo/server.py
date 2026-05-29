@@ -7,7 +7,8 @@ returns the top-K matching passages.
 
 Launched automatically by `client_agent.py`; can also be run directly:
 
-    uv run server.py
+    uv run server.py            # stdio (default)
+    uv run server.py --http     # Streamable HTTP at http://127.0.0.1:8001/mcp
 """
 
 from __future__ import annotations
@@ -129,5 +130,32 @@ def list_sources() -> list[str]:
     return sorted({m["source"] for m in peek["metadatas"]})
 
 
+def _run() -> None:
+    """Run over stdio (default) or Streamable HTTP (`--http`).
+
+    HTTP mode lets you start the server yourself (e.g. `make serve-mcp-rag`)
+    and have LM Studio connect to it by URL instead of spawning it as a stdio
+    subprocess.
+    """
+    import argparse
+
+    parser = argparse.ArgumentParser(description="devtalks mcp_rag_demo server")
+    parser.add_argument(
+        "--http",
+        action="store_true",
+        help="Serve over Streamable HTTP instead of stdio.",
+    )
+    parser.add_argument("--host", default="127.0.0.1", help="HTTP bind host.")
+    parser.add_argument("--port", type=int, default=8001, help="HTTP bind port.")
+    args = parser.parse_args()
+
+    if args.http:
+        mcp.settings.host = args.host
+        mcp.settings.port = args.port
+        mcp.run(transport="streamable-http")
+    else:
+        mcp.run(transport="stdio")
+
+
 if __name__ == "__main__":
-    mcp.run(transport="stdio")
+    _run()

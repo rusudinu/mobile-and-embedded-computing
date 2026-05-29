@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "devtalks-mcp-demo": {
+      "url": "http://127.0.0.1:8000/mcp"
+    },
+    "devtalks-mcp-rag-demo": {
+      "url": "http://127.0.0.1:8001/mcp"
+    },
+    "devtalks-mcp-rag-web-demo": {
+      "url": "http://127.0.0.1:8002/mcp"
+    }
+  }
+}
