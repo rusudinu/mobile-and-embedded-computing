@@ -2,13 +2,14 @@
 
 A self-contained Python demo that combines **MCP** and **RAG** into one
 agentic workflow. An MCP stdio server owns an in-memory Chroma index of
-the markdown files in [`documents/`](documents) and exposes
+the markdown files in the shared top-level [`../documents/`](../documents)
+folder and exposes
 `search_knowledge(query, k)` as a tool. A client advertises that tool to
 an LM-Studio-served chat model, which decides for itself when to retrieve
 and then answers using the retrieved passages.
 
-No shared code with [`../rag_demo`](../rag_demo) or
-[`../mcp_demo`](../mcp_demo) — this folder is a standalone
+No shared Python code with [`../rag_demo`](../rag_demo) or
+[`../mcp_demo`](../mcp_demo) — this folder is its own
 [uv](https://docs.astral.sh/uv/) project.
 
 ## What this demo shows
@@ -156,12 +157,13 @@ mcp_rag_demo/
 ├── config.py            # env-backed Config dataclass
 ├── server.py            # FastMCP server: Chroma + search_knowledge tool
 ├── client_agent.py      # MCP client: agentic + fallback paths
-└── documents/
-    ├── mcp_overview.md
-    ├── mcp_plus_rag.md
-    ├── devtalks_conference.md   # DevTalks / devtalks.ro
-    ├── qwen_models.md
-    └── rag_overview.md
+../documents/
+├── devtalks_conference.md   # DevTalks / devtalks.ro
+├── lm_studio.md
+├── mcp_overview.md
+├── mcp_plus_rag.md
+├── qwen_models.md
+└── rag_overview.md
 ```
 
 ## Configuration reference

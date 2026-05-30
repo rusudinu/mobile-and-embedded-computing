@@ -1,10 +1,10 @@
 # DevTalks demos: RAG, MCP, MCP + RAG
 
-Four **independent** Python projects for talks about [DevTalks](https://www.devtalks.ro/)
-(Romania's developer conference). Each folder
-is a standalone [uv](https://docs.astral.sh/uv/) project with its own
-`pyproject.toml`, `uv.lock`, `.env.example`, and README — you can clone
-just one folder and it will still run.
+Four Python demos for talks about [DevTalks](https://www.devtalks.ro/)
+(Romania's developer conference). Each demo folder is its own
+[uv](https://docs.astral.sh/uv/) project with its own `pyproject.toml`,
+`uv.lock`, `.env.example`, and README. The local knowledge-base markdown
+files are shared from the top-level [`documents/`](documents/) folder.
 
 | Folder | What it shows | When to present it |
 |--------|---------------|--------------------|
@@ -36,6 +36,7 @@ uv run <entrypoint>.py      # see the folder's README for the entrypoint
 Entrypoints:
 
 - `rag_demo/` → `uv run ingest_and_chat.py`
+- root-level notebook → `make run-rag-notebook`
 - `mcp_demo/` → `uv run client_llm.py` (add `--llm` to involve LM Studio)
 - `mcp_rag_demo/` → `uv run client_agent.py` (add `--fallback` to skip tool calling)
 - `mcp_rag_demo_web_search/` → `uv run client_agent.py` (add `--fallback` to skip tool calling)
@@ -155,8 +156,9 @@ to add live web search — all without leaving the chat window.
 > work exactly as before and spawn their own stdio server; the HTTP setup
 > above is purely for driving the same tools from LM Studio's chat UI.
 
-## Isolation guarantee
+## Project boundaries
 
-There are no Python imports across these folders. The `config.py`,
-`.env.example`, and documents are deliberately duplicated so each demo
-stands alone and can be presented (or extracted) on its own.
+There are no Python imports across these folders. The `config.py` and
+`.env.example` files are deliberately duplicated so each demo keeps its
+own runtime configuration, while all RAG examples read the same shared
+top-level [`documents/`](documents/) corpus.

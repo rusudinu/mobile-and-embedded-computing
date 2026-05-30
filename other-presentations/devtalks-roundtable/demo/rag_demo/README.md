@@ -1,12 +1,13 @@
 # rag_demo — In-memory Retrieval-Augmented Generation
 
 A self-contained, presenter-friendly Python demo of a minimal RAG pipeline.
-Markdown files in [`documents/`](documents) are ingested into an **in-memory
-ChromaDB** collection, embedded with an LM-Studio-served embedding model, and
-used as grounding context for an LM-Studio-served chat model.
+Markdown files in the shared top-level [`../documents/`](../documents)
+folder are ingested into an **in-memory ChromaDB** collection, embedded
+with an LM-Studio-served embedding model, and used as grounding context
+for an LM-Studio-served chat model.
 
-No MCP, no persistence, no cross-demo imports — this folder is a standalone
-[uv](https://docs.astral.sh/uv/) project.
+No MCP, no persistence, no cross-demo Python imports — this folder is its
+own [uv](https://docs.astral.sh/uv/) project.
 
 ## What this demo shows
 
@@ -91,8 +92,8 @@ RAG demo configuration:
   embedding model  : text-embedding-qwen3-embedding-4b
   top-K            : 3
 
-Ingesting documents from ./documents ...
-  indexed 4 documents into collection 'devtalks_rag_demo'.
+Ingesting documents from ../documents ...
+  indexed 6 documents into collection 'devtalks_rag_demo'.
 
 > Question: ...
   Retrieved top-3 passages:
@@ -114,7 +115,7 @@ All logic lives in a single file: [`ingest_and_chat.py`](ingest_and_chat.py).
   `openai` SDK instance is used for embeddings *and* chat, with only the
   `base_url` changed.
 - `load_markdown_files` (line 46) reads every `.md` file under
-  [`documents/`](documents) as one chunk. For a bigger corpus you'd split
+  [`../documents/`](../documents) as one chunk. For a bigger corpus you'd split
   long files, but for a ~3 minute demo one chunk per file keeps the story
   simple.
 - `build_collection` (line 54) calls `chromadb.EphemeralClient()` (in
@@ -142,11 +143,13 @@ rag_demo/
 ├── .env.example           # copy to .env
 ├── config.py              # env-backed Config dataclass
 ├── ingest_and_chat.py     # single-file RAG pipeline entrypoint
-└── documents/
-    ├── lm_studio.md
-    ├── devtalks_conference.md   # DevTalks / devtalks.ro
-    ├── qwen_models.md
-    └── rag_overview.md
+../documents/
+├── devtalks_conference.md   # DevTalks / devtalks.ro
+├── lm_studio.md
+├── mcp_overview.md
+├── mcp_plus_rag.md
+├── qwen_models.md
+└── rag_overview.md
 ```
 
 ## Configuration reference

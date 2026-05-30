@@ -3,7 +3,8 @@
 A self-contained Python demo that combines **MCP** and **RAG** into one
 agentic workflow, with **live web search**, a **page reader**, and a small
 **current date** tool. An MCP stdio server owns an in-memory Chroma index
-of the markdown files in [`documents/`](documents) and exposes
+of the markdown files in the shared top-level
+[`../documents/`](../documents) folder and exposes
 `search_knowledge(query, k)` for the local knowledge base,
 `search_web(query, k)` for live DuckDuckGo results,
 `fetch_page(url)` to read the full content of a result, and
@@ -13,8 +14,8 @@ for itself when to retrieve locally, search the web, open a page, or check
 the date — then answers using the retrieved material.
 
 This folder is a copy of [`../mcp_rag_demo`](../mcp_rag_demo) with the web
-search, page-reading, and current-date tools added. It remains a
-standalone [uv](https://docs.astral.sh/uv/) project with no shared code.
+search, page-reading, and current-date tools added. It remains its own
+[uv](https://docs.astral.sh/uv/) project with no shared Python code.
 
 ## What this demo shows
 
@@ -203,12 +204,13 @@ mcp_rag_demo_web_search/
 ├── config.py            # env-backed Config dataclass
 ├── server.py            # FastMCP server: Chroma + search_knowledge + search_web + fetch_page + current_date
 ├── client_agent.py      # MCP client: agentic + fallback paths
-└── documents/
-    ├── mcp_overview.md
-    ├── mcp_plus_rag.md
-    ├── devtalks_conference.md   # DevTalks / devtalks.ro
-    ├── qwen_models.md
-    └── rag_overview.md
+../documents/
+├── devtalks_conference.md   # DevTalks / devtalks.ro
+├── lm_studio.md
+├── mcp_overview.md
+├── mcp_plus_rag.md
+├── qwen_models.md
+└── rag_overview.md
 ```
 
 ## Configuration reference

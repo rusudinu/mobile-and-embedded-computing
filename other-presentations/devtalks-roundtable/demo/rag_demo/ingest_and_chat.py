@@ -21,7 +21,7 @@ from openai import OpenAI
 
 from config import Config, load_config
 
-DOCS_DIR = Path(__file__).parent / "documents"
+DOCS_DIR = Path(__file__).resolve().parents[1] / "documents"
 COLLECTION_NAME = "devtalks_rag_demo"
 DEFAULT_QUESTION = "What embedding model does this demo use and why?"
 
@@ -151,7 +151,7 @@ def main() -> int:
     embedder = OpenAIEmbeddingFunction(openai_client, cfg.embedding_model)
     chroma = chromadb.EphemeralClient()
 
-    print("\nIngesting documents from ./documents ...")
+    print(f"\nIngesting documents from {DOCS_DIR} ...")
     docs = load_markdown_files(DOCS_DIR)
     collection = build_collection(chroma, embedder, docs)
     print(f"  indexed {len(docs)} documents into collection '{COLLECTION_NAME}'.")

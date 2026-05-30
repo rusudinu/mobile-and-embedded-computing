@@ -1,7 +1,7 @@
 """MCP stdio server that wraps an in-memory Chroma RAG index as a tool.
 
 The server builds a fresh `chromadb.EphemeralClient` collection from the
-markdown files in `documents/` and advertises a single tool,
+markdown files in the shared top-level `documents/` folder and advertises a single tool,
 `search_knowledge(query, k)`, which embeds the query via LM Studio and
 returns the top-K matching passages.
 
@@ -24,7 +24,7 @@ from openai import OpenAI
 
 from config import Config, load_config
 
-DOCS_DIR = Path(__file__).parent / "documents"
+DOCS_DIR = Path(__file__).resolve().parents[1] / "documents"
 COLLECTION_NAME = "devtalks_mcp_rag_demo"
 
 mcp = FastMCP("devtalks-mcp-rag-demo")

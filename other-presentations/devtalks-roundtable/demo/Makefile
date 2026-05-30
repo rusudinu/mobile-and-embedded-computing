@@ -2,7 +2,7 @@
 # Requires: uv (brew install uv), LM Studio running for LLM-dependent targets
 
 .PHONY: help setup setup-mcp setup-rag setup-mcp-rag setup-mcp-rag-web \
-        run-mcp run-mcp-llm run-rag run-rag-interactive run-mcp-rag run-mcp-rag-fallback \
+        run-mcp run-mcp-llm run-rag run-rag-interactive run-rag-notebook run-mcp-rag run-mcp-rag-fallback \
         run-mcp-rag-web run-mcp-rag-web-fallback \
         serve-mcp serve-mcp-rag serve-mcp-rag-web serve-all
 
@@ -46,6 +46,9 @@ run-rag: ## Run rag_demo with default question (requires LM Studio)
 
 run-rag-interactive: ## Run rag_demo in interactive REPL mode
 	cd rag_demo && uv run ingest_and_chat.py --interactive
+
+run-rag-notebook: ## Open the step-by-step RAG + tool calling notebook
+	uv run --with jupyterlab --with chromadb --with openai --with python-dotenv jupyter lab rag_tool_calling_walkthrough.ipynb
 
 # ─── MCP + RAG Demo ──────────────────────────────────────────────────────────
 
