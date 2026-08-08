@@ -5,10 +5,9 @@ Everything you need for the Mobile and Embedded Computing course.
 
 The repository is organized into the following top-level folders:
 
-- **lectures/** — Lecture slides (.pptx) for each week (Lecture 1 through Lecture 12).
-- **lectures-pdf/** — PDF versions of the lecture slides.
-- **labs/** — Lab slides (.pptx) for each lab session (Lab 1 through Lab 4).
-- **labs-pdf/** — PDF versions of the lab slides.
+- **slides/** — The course slides (HTML, current). Open `slides/index.html` in a browser: 12 lectures + 5 labs. Navigate a deck with ← → (or click the slide edges); export to PDF with Cmd/Ctrl+P (margins none, background graphics on). Authoring guide: `slides/TEMPLATE.md`.
+- **lectures/**, **lectures-pdf/** — Legacy PowerPoint/PDF lecture slides (superseded by `slides/`).
+- **labs/**, **labs-pdf/** — Legacy PowerPoint/PDF lab slides (superseded by `slides/`).
 - **sources/** — Additional reading materials and reference PDFs.
 - **flutter_examples/** — Flutter code demos organized by topic (see below).
 - **meta/** — Meta/configuration files.
