@@ -25,6 +25,11 @@
       <excludeFolder url="file://$MODULE_DIR$/other-presentations/onia/demo/mcp_demo/.venv" />
       <excludeFolder url="file://$MODULE_DIR$/other-presentations/onia/demo/mcp_rag_demo/.venv" />
       <excludeFolder url="file://$MODULE_DIR$/other-presentations/onia/demo/rag_demo/.venv" />
+      <excludeFolder url="file://$MODULE_DIR$/other-presentations/devtalks-roundtable/.venv" />
+      <excludeFolder url="file://$MODULE_DIR$/other-presentations/devtalks-roundtable/demo/mcp_demo/.venv" />
+      <excludeFolder url="file://$MODULE_DIR$/other-presentations/devtalks-roundtable/demo/mcp_rag_demo/.venv" />
+      <excludeFolder url="file://$MODULE_DIR$/other-presentations/devtalks-roundtable/demo/mcp_rag_demo_web_search/.venv" />
+      <excludeFolder url="file://$MODULE_DIR$/other-presentations/devtalks-roundtable/demo/rag_demo/.venv" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -1,0 +1,411 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=0.6in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{textcomp}
+\usepackage{parskip}
+
+\setlist[enumerate,2]{label=\Alph*., leftmargin=2.2em, topsep=2pt, itemsep=1pt}
+\setlist[enumerate,1]{leftmargin=2.2em, itemsep=6pt}
+
+\pagestyle{plain}
+
+% Question worth 2 points each (15 questions x 2p = 30p per subject)
+\newcommand{\pts}{\textbf{(2p)}~}
+
+% Student name field, shown top-left of each subject
+\newcommand{\nameheader}{%
+  \noindent\textbf{Name:}~\underline{\hspace{8cm}}\par\vspace{4pt}
+}
+
+% Compact centered title
+\newcommand{\examtitle}{%
+  \begin{center}
+  {\large\bfseries Mobile and Embedded Computing; Final Exam (30p)}
+  \end{center}
+  \vspace{-4pt}
+}
+
+\newcommand{\answergrid}{%
+  \begin{center}
+  \renewcommand{\arraystretch}{1.6}
+  \begin{tabular}{|c|*{15}{c|}}
+  \hline
+  Answer & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 \\
+  \hline
+  A &&&&&&&&&&&&&&& \\
+  \hline
+  B &&&&&&&&&&&&&&& \\
+  \hline
+  C &&&&&&&&&&&&&&& \\
+  \hline
+  D &&&&&&&&&&&&&&& \\
+  \hline
+  E &&&&&&&&&&&&&&& \\
+  \hline
+  \end{tabular}
+  \end{center}
+}
+
+% Filled answer key for Variant 1
+\newcommand{\answergridone}{%
+  \begin{center}
+  \renewcommand{\arraystretch}{1.6}
+  \begin{tabular}{|c|*{15}{c|}}
+  \hline
+  Answer & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 \\
+  \hline
+  A & X & X & X & X & X & X & X &   & X & X & X & X & X & X & X \\
+  \hline
+  B & X & X & X &   &   & X & X & X & X & X & X & X & X & X & X \\
+  \hline
+  C & X & X & X & X & X & X & X & X &   & X & X & X & X & X & X \\
+  \hline
+  D &   &   &   & X & X & X & X & X & X & X &   &   &   &   &   \\
+  \hline
+  E &   & X & X & X & X &   &   & X & X &   & X & X & X &   & X \\
+  \hline
+  \end{tabular}
+  \end{center}
+}
+
+% Filled answer key for Variant 2
+\newcommand{\answergridtwo}{%
+  \begin{center}
+  \renewcommand{\arraystretch}{1.6}
+  \begin{tabular}{|c|*{15}{c|}}
+  \hline
+  Answer & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 \\
+  \hline
+  A & X & X & X & X & X & X & X & X & X & X & X & X & X & X & X \\
+  \hline
+  B & X & X & X & X & X & X & X & X & X & X & X & X & X & X & X \\
+  \hline
+  C & X & X & X & X & X & X & X &   &   & X & X & X & X & X & X \\
+  \hline
+  D &   &   &   &   &   &   & X & X & X &   &   &   &   & X & X \\
+  \hline
+  E & X & X & X & X &   & X &   & X & X & X & X & X & X &   &   \\
+  \hline
+  \end{tabular}
+  \end{center}
+}
+
+% Exam instructions + how to fill in the answer grid
+\newcommand{\instructions}{%
+  \small
+  \noindent Each question has \textbf{zero or more} correct answers and is worth \textbf{2p}. A question is awarded points only if \emph{all} correct options are selected and \emph{no} incorrect options are selected (no partial credit). A non-programmable calculator is allowed for the calculation questions.
+
+  \smallskip
+  \noindent\textbf{How to fill in your answers.} All answers go in the grid above. The \textbf{columns (1--15)} correspond to the questions and the \textbf{rows (A--E)} correspond to the options. For each question, put an \textbf{X} in the box where that question's column meets the row of \emph{every} option you consider correct, and leave the boxes of the incorrect options empty (for example, if you think A and C are correct for question 4, mark an X in column 4, rows A and C only). Only the grid is graded. Any marks made next to the questions themselves are ignored. To revise an answer, completely fill the mistaken box and clearly X the intended one.
+  \normalsize\par\smallskip
+}
+
+\begin{document}
+
+  \nameheader
+  \examtitle
+
+%==================================================================
+  \subsection*{Variant 1}
+%==================================================================
+
+  \answergridone
+
+  \instructions
+
+  \begin{enumerate}
+
+    \item \pts A frame budget is $1000\,\text{ms} \div \text{target FPS}$. Assume the UI thread does all rendering work. Select all that are TRUE:
+    \begin{enumerate}
+      \item At 60 FPS the per-frame budget is about 16.67 ms ($1000 \div 60$).
+      \item At 120 FPS the per-frame budget is about 8.33 ms ($1000 \div 120$).
+      \item A synchronous task that runs for 100 ms on the UI thread blocks roughly 6 frames at 60 FPS ($100 \div 16.67 \approx 6$).
+      \item At 30 FPS the per-frame budget is about 8.33 ms.
+      \item A task that takes exactly 16.67 ms leaves about 50\% of the 60 FPS frame budget free for other work.
+    \end{enumerate}
+
+    \item \pts A client retries with exponential backoff: the base delay is \textbf{1 s} and it \textbf{doubles} every attempt (1, 2, 4, 8, \dots), with the delay computed for the \emph{n}-th retry as $2^{\,n-1}$ seconds. Select all that are TRUE:
+    \begin{enumerate}
+      \item The uncapped backoff delay before the 5th retry is 16 s.
+      \item With a 30 s maximum-delay cap, the 6th retry's delay is capped at 30 s instead of its uncapped value of 32 s.
+      \item Using \textbf{full jitter} on a computed backoff delay of 8 s, the actual wait is a random value in the range [0 s, 8 s].
+      \item Using \textbf{equal jitter} on a computed backoff delay of 8 s, the actual wait is a random value in the range [8 s, 16 s].
+      \item Summing the uncapped delays of the first four retries (1 + 2 + 4 + 8) gives 15 s of total waiting.
+    \end{enumerate}
+
+    \item \pts Select all that are TRUE:
+    \begin{enumerate}
+      \item A PWA must be served over HTTPS.
+      \item A PWA relies on a service worker that checks for updates in the background and applies them on the next launch.
+      \item Native apps generally offer the best performance and use native components.
+      \item Cross-platform apps never need to go through a store review process for any kind of update.
+      \item Flutter, as a cross-platform framework, also supports Desktop targets.
+    \end{enumerate}
+
+    \item \pts Select all that are TRUE:
+    \begin{enumerate}
+      \item Compiled languages tend to be roughly 100 times faster than interpreted languages.
+      \item Interpreted languages catch more errors at compile time, preventing them from reaching production.
+      \item Compiled code is generally more difficult to reverse engineer or modify.
+      \item Interpreted languages offer a shorter development feedback loop, well-suited to prototyping.
+      \item With a compiled language you must ``rebuild'' the program every time you make a change.
+    \end{enumerate}
+
+    \item \pts Select all that are TRUE:
+    \begin{enumerate}
+      \item Dart is null safe.
+      \item Dart is dynamically typed and has no static type system.
+      \item Dart is garbage collected.
+      \item Dart supports hot reload.
+      \item Dart has built-in support for asynchronous programming.
+    \end{enumerate}
+
+    \item \pts Select all that are TRUE:
+    \begin{enumerate}
+      \item The Dart GC uses a two-generation approach: a young generation and an old generation.
+      \item A remembered set tracks references from old-generation objects to young-generation objects.
+      \item A write barrier is code that runs whenever the application modifies an object reference.
+      \item Objects that survive multiple young-generation collections are promoted to the old generation.
+      \item The remembered set primarily tracks references that point from the young generation into the old generation.
+    \end{enumerate}
+
+    \item \pts A write barrier adds information to the remembered set, and the Dart VM has particular execution modes. Select all that are TRUE:
+    \begin{enumerate}
+      \item The barrier triggers a remembered-set update when the \emph{target} object being written to is in the old generation.
+      \item The barrier triggers a remembered-set update when the \emph{new reference} points to a young-generation object.
+      \item During development the Dart VM operates in JIT mode.
+      \item In production the Dart VM runs in AOT mode (compiled ahead-of-time to native machine code).
+      \item AOT compilation increases VM overhead and causes higher memory consumption than JIT.
+    \end{enumerate}
+
+    \item \pts Select all that are TRUE:
+    \begin{enumerate}
+      \item Isolates share a single memory heap and therefore require locks/mutexes for synchronization.
+      \item Each isolate has its own memory heap and its own event loop.
+      \item Isolates communicate through message passing via ports.
+      \item Because isolates do not share mutable memory, race conditions are effectively impossible between them.
+      \item Messages containing primitive types are copied when sent between isolates.
+    \end{enumerate}
+
+    \item \pts Select all that are TRUE:
+    \begin{enumerate}
+      \item The asynchronous model is the better fit for I/O-bound operations such as network calls.
+      \item Threads/isolates are the better fit for CPU-intensive work such as image processing or encryption.
+      \item The asynchronous model achieves true parallelism by running tasks on multiple cores simultaneously.
+      \item Threads generally incur higher overhead than async (creation, context switching, memory).
+      \item The async model uses cooperative multitasking, where tasks voluntarily yield control to an event loop.
+    \end{enumerate}
+
+    \item \pts Select all that are TRUE:
+    \begin{enumerate}
+      \item At 60 FPS, the UI thread has roughly 16.67ms to produce each frame.
+      \item Blocking the UI thread beyond the frame budget causes jank (dropped frames, stuttery animation).
+      \item On Android, an unresponsive app can trigger an ANR (``Application Not Responding'') dialog after about 5 seconds.
+      \item In Flutter, the thread responsible for UI is referred to as the Main/UI Isolate.
+      \item CPU-intensive \texttt{async}/\texttt{await} code naturally yields back to the event loop, so it never blocks the thread.
+    \end{enumerate}
+
+    \item \pts Select all that are TRUE:
+    \begin{enumerate}
+      \item As a rule of thumb, an operation that takes more than \textasciitilde100ms of pure CPU time should be moved to an isolate.
+      \item \texttt{compute()} creates an isolate, sends your data, receives the result, and then cleans up the isolate.
+      \item You should generally not run more isolates than the device has CPU cores.
+      \item Isolates can directly access and mutate the UI.
+      \item Creating an isolate costs roughly 2--10ms.
+    \end{enumerate}
+
+    \item \pts Select all that are TRUE:
+    \begin{enumerate}
+      \item \texttt{setState()} tends to mix logic and UI together and does not scale well for complex apps.
+      \item Lifting state up too far can lead to ``prop drilling'' --- passing data through many layers.
+      \item Ephemeral (local) state lives within a single widget (e.g., a toggle switch or counter).
+      \item \texttt{setState()} is the recommended approach for sharing the same state across many widgets and screens.
+      \item App (global) state is shared across multiple widgets or screens (e.g., the logged-in user or theme mode).
+    \end{enumerate}
+
+    \item \pts Select all that are TRUE:
+    \begin{enumerate}
+      \item A Cubit emits new states directly, without separate events.
+      \item A BLoC works with both events and states, offering more structure than a Cubit.
+      \item Without Equatable, Dart's default equality compares object references rather than values.
+      \item Equatable causes unnecessary rebuilds because it compares states by reference.
+      \item BLoC stands for Business Logic Component and separates UI from business logic.
+    \end{enumerate}
+
+    \item \pts Select all that are TRUE:
+    \begin{enumerate}
+      \item Serverless (FaaS) bills per invocation and resource time, with no charge while idle.
+      \item Cold starts add latency in serverless; mitigations include keeping minimum instances / provisioned concurrency.
+      \item A VPS gives you full root control, but you are responsible for patching, firewalling, and key rotation.
+      \item With a VPS you only pay for actual request processing and nothing while the machine is idle.
+      \item Serverless typically wins for steady, constant high-traffic loads, while a VPS is better for spiky/low traffic.
+    \end{enumerate}
+
+    \item \pts Select all that are TRUE:
+    \begin{enumerate}
+      \item Idempotent HTTP methods (GET, HEAD, PUT, DELETE, OPTIONS) are defined to be safe to repeat.
+      \item The \texttt{Retry-After} header tells the client how long to wait (e.g., after a 429 or 503).
+      \item Exponential backoff combined with jitter helps avoid thundering herds and synchronized retries.
+      \item Hedging is safe to apply to non-idempotent writes without any additional safeguards.
+      \item ``Full jitter'' waits for a random value between 0 and the current exponential backoff delay.
+    \end{enumerate}
+
+  \end{enumerate}
+
+  \newpage
+
+  \nameheader
+  \examtitle
+
+%==================================================================
+  \subsection*{Variant 2}
+%==================================================================
+
+  \answergridtwo
+
+  \instructions
+
+  \begin{enumerate}
+
+    \item \pts A frame budget is $1000\,\text{ms} \div \text{target FPS}$. Assume the UI thread does all rendering work. Select all that are TRUE:
+    \begin{enumerate}
+      \item At 90 FPS the per-frame budget is about 11.11 ms ($1000 \div 90$).
+      \item At 24 FPS the per-frame budget is about 41.67 ms ($1000 \div 24$).
+      \item A synchronous task that runs for 250 ms on the UI thread blocks roughly 15 frames at 60 FPS ($250 \div 16.67 \approx 15$).
+      \item At 120 FPS the per-frame budget is about 16.67 ms.
+      \item A task that takes 8 ms at 60 FPS uses just under half of the frame budget ($8 \div 16.67 \approx 48\%$).
+    \end{enumerate}
+
+    \item \pts A client retries with exponential backoff: the base delay is \textbf{0.5 s} and it \textbf{doubles} every attempt (0.5, 1, 2, 4, \dots), with the delay for the \emph{n}-th retry computed as $0.5 \times 2^{\,n-1}$ seconds. Select all that are TRUE:
+    \begin{enumerate}
+      \item The uncapped backoff delay before the 5th retry is 8 s.
+      \item With a 10 s maximum-delay cap, the 6th retry's delay is capped at 10 s instead of its uncapped value of 16 s.
+      \item Using \textbf{full jitter} on a computed backoff delay of 4 s, the actual wait is a random value in the range [0 s, 4 s].
+      \item Using \textbf{equal jitter} on a computed backoff delay of 4 s, the actual wait is a random value in the range [1 s, 2 s].
+      \item Summing the uncapped delays of the first five retries (0.5 + 1 + 2 + 4 + 8) gives 15.5 s of total waiting.
+    \end{enumerate}
+
+    \item \pts Select all that are TRUE:
+    \begin{enumerate}
+      \item A web app is accessed using a URL and requires no installation.
+      \item Web apps are cross-platform ``by default'' and usually require an active internet connection.
+      \item Native iOS apps are built with Swift or Objective-C in Xcode.
+      \item Cross-platform apps generally have worse performance than PWAs.
+      \item A PWA is capable of working offline.
+    \end{enumerate}
+
+    \item \pts Select all that are TRUE:
+    \begin{enumerate}
+      \item An interpreted language executes code line-by-line via an interpreter at runtime.
+      \item Compiled languages catch errors earlier, during compilation, preventing some runtime failures.
+      \item Because interpreted source is often distributed alongside the interpreter, proprietary algorithms can be easier to reverse engineer.
+      \item Compiled languages are better suited to rapid prototyping and scripting than interpreted ones.
+      \item The performance gap matters most in computationally intensive applications (e.g., scientific computing, real-time systems).
+    \end{enumerate}
+
+    \item \pts Select all that are TRUE:
+    \begin{enumerate}
+      \item Dart is a client-optimized language developed by Google.
+      \item Dart was first released in 2011.
+      \item Dart is an object-oriented language.
+      \item Dart cannot perform hot reload; it requires a full restart for every change.
+      \item Dart compiles only via AOT and has no JIT mode.
+    \end{enumerate}
+
+    \item \pts Select all that are TRUE:
+    \begin{enumerate}
+      \item The young generation is collected independently and much more frequently than the old generation.
+      \item For old-generation collections, the Dart VM uses concurrent marking that runs alongside the application (mutator) to reduce pause times.
+      \item Incremental sweeping spreads the sweep phase across many small time slices to reduce long stop-the-world pauses.
+      \item The young generation is collected less frequently than the old generation.
+      \item A remembered set exists to track references from old-generation objects that point to young-generation objects.
+    \end{enumerate}
+
+    \item \pts A write barrier adds information to the remembered set, and the Dart VM has particular execution modes. Select all that are TRUE:
+    \begin{enumerate}
+      \item A write barrier executes whenever the application modifies an object reference.
+      \item Both conditions---target object in the old generation AND new reference into the young generation---must hold for the barrier to record the reference.
+      \item In JIT mode, Dart source code is initially parsed and executed through an interpreter.
+      \item AOT-compiled output eliminates the VM overhead and produces standalone executables that start faster and use less memory.
+      \item The Dart VM uses AOT mode during development and JIT mode in production.
+    \end{enumerate}
+
+    \item \pts Select all that are TRUE:
+    \begin{enumerate}
+      \item An isolate is Dart's approach to achieving true parallelism.
+      \item Compared to Java/C++ threads (shared heap), isolates use separate heaps.
+      \item Communication between isolates is done by direct memory access, just like threads.
+      \item Synchronization primitives such as locks/mutexes are not needed between isolates.
+      \item Large data can be moved between isolates using TransferableTypedData rather than a costly copy.
+    \end{enumerate}
+
+    \item \pts Select all that are TRUE:
+    \begin{enumerate}
+      \item In the threading model, code can run in parallel across multiple cores.
+      \item The async model has lower overhead than threads because it avoids context switching between threads.
+      \item Thread-based code is generally lower in complexity than async because there are no race conditions to manage.
+      \item The async/await pattern looks synchronous while actually executing asynchronously.
+      \item In the async model there are no shared-state issues because everything runs on the same thread.
+    \end{enumerate}
+
+    \item \pts Select all that are TRUE:
+    \begin{enumerate}
+      \item On iOS, the UI-handling thread is referred to as the Main Thread or Main Queue.
+      \item Responsibilities of the UI thread include rendering, event handling, view lifecycle, and animations.
+      \item On iOS, a watchdog can kill the app if it remains unresponsive.
+      \item The golden rule is that heavy work should always be placed directly on the UI thread to keep it busy.
+      \item Dropped frames caused by exceeding the frame budget are commonly called ``jank.''
+    \end{enumerate}
+
+    \item \pts Select all that are TRUE:
+    \begin{enumerate}
+      \item If an operation primarily waits for I/O (network, disk), async/await is preferred over an isolate.
+      \item \texttt{compute()} also handles errors, in addition to creating the isolate, sending data, receiving the result, and cleaning up.
+      \item Sending a small message ($<$ 1 MB) between isolates is a fast copy.
+      \item Isolates have effectively zero communication overhead because there is no serialization cost.
+      \item On a 4-core device you should generally not run more than 4 isolates.
+    \end{enumerate}
+
+    \item \pts Select all that are TRUE:
+    \begin{enumerate}
+      \item In Flutter, widgets are immutable once created; when state changes, Flutter rebuilds widgets with the new data.
+      \item Immutability aids predictability because the UI does not mutate unexpectedly.
+      \item Flutter uses keys to compare old and new widgets, keeping elements that did not change and rebuilding those that did.
+      \item A recommended best practice is to keep UI (widgets) and business logic tightly coupled in the same place.
+      \item A reasonable progression is to start simple with \texttt{setState} and move to Riverpod/BLoC as complexity grows.
+    \end{enumerate}
+
+    \item \pts Select all that are TRUE:
+    \begin{enumerate}
+      \item BLoC uses a stream-based approach with events and states via Stream and Sink.
+      \item In the BLoC architecture, the data layer handles API calls and databases.
+      \item Equatable lets Flutter compare states by value, avoiding unnecessary rebuilds.
+      \item Without Equatable, two \texttt{CounterState(1)} objects with the same count are treated as equal by Dart's default equality.
+      \item A Cubit is a simpler version of BLoC that emits new states directly without separate events.
+    \end{enumerate}
+
+    \item \pts Select all that are TRUE:
+    \begin{enumerate}
+      \item Serverless platforms handle provisioning, scaling, and patching for you.
+      \item A benefit of serverless is automatic scaling, from zero up to peaks, with a small operations surface.
+      \item A VPS such as Hetzner Cloud can use Floating IPs that move between nodes to support high availability.
+      \item Serverless functions have a stateless runtime and execution time limits.
+      \item Serverless gives you full root control of the kernel and installed agents.
+    \end{enumerate}
+
+    \item \pts Select all that are TRUE:
+    \begin{enumerate}
+      \item POST and PATCH should be retried with caution unless you add idempotency keys.
+      \item Hedged requests send a second copy of the same request after a short delay and use the first successful response, canceling the rest.
+      \item gRPC supports a hedging policy natively.
+      \item Decorrelated jitter randomizes delays around a moving average to adapt faster.
+      \item Hedging should be applied freely to non-idempotent writes since it always reduces latency safely.
+    \end{enumerate}
+
+  \end{enumerate}
+
+\end{document}
