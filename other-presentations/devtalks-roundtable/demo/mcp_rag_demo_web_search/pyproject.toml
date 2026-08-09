@@ -7,6 +7,6 @@ dependencies = [
     "chromadb>=1.5.7",
     "ddgs>=9.0.0",
     "mcp[cli]>=1.27.0",
-    "openai>=2.32.0",
+    "openai>=2.52.0",
     "python-dotenv>=1.2.2",
 ]
