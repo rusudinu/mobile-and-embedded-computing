@@ -1,4 +1,4 @@
-"""A minimal MCP stdio server built with FastMCP.
+"""A minimal MCP stdio server built with MCPServer.
 
 Exposes two tiny, audience-friendly tools:
 
@@ -19,9 +19,9 @@ from __future__ import annotations
 from datetime import datetime
 from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
-from mcp.server.fastmcp import FastMCP
+from mcp.server import MCPServer
 
-mcp = FastMCP("devtalks-mcp-demo")
+mcp = MCPServer("devtalks-mcp-demo")
 
 
 @mcp.tool()
@@ -63,9 +63,7 @@ def _run() -> None:
     args = parser.parse_args()
 
     if args.http:
-        mcp.settings.host = args.host
-        mcp.settings.port = args.port
-        mcp.run(transport="streamable-http")
+        mcp.run(transport="streamable-http", host=args.host, port=args.port)
     else:
         mcp.run(transport="stdio")
 
