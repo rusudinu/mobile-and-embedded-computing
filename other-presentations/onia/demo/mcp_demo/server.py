@@ -1,4 +1,4 @@
-"""A minimal MCP stdio server built with FastMCP.
+"""A minimal MCP stdio server built with MCPServer.
 
 Exposes two tiny, audience-friendly tools:
 
@@ -18,9 +18,9 @@ from __future__ import annotations
 from datetime import datetime
 from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
-from mcp.server.fastmcp import FastMCP
+from mcp.server import MCPServer
 
-mcp = FastMCP("onia-mcp-demo")
+mcp = MCPServer("onia-mcp-demo")
 
 
 @mcp.tool()
