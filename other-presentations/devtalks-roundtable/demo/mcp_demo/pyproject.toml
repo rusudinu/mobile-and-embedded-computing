@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "Add your description here"
 requires-python = ">=3.12"
 dependencies = [
-    "mcp[cli]>=1.27.0",
+    "mcp[cli]>=2.0.0",
     "openai>=2.52.0",
     "python-dotenv>=1.2.2",
 ]
