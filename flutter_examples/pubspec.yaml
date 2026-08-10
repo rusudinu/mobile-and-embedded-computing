@@ -23,7 +23,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^5.0.0
+  flutter_lints: ^6.0.0
   # Code generation
   build_runner: ^2.4.0           # Build system for Dart code generation
   chopper_generator: ^7.1.0      # Code generator for Chopper
