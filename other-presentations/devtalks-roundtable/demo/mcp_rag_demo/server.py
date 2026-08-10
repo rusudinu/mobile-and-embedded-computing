@@ -19,7 +19,7 @@ from threading import Lock
 
 import chromadb
 from chromadb.api.types import Documents, EmbeddingFunction, Embeddings
-from mcp.server.fastmcp import FastMCP
+from mcp.server import MCPServer
 from openai import OpenAI
 
 from config import Config, load_config
@@ -27,7 +27,7 @@ from config import Config, load_config
 DOCS_DIR = Path(__file__).resolve().parents[1] / "documents"
 COLLECTION_NAME = "devtalks_mcp_rag_demo"
 
-mcp = FastMCP("devtalks-mcp-rag-demo")
+mcp = MCPServer("devtalks-mcp-rag-demo")
 
 _state: dict = {}
 _init_lock = Lock()
@@ -150,9 +150,7 @@ def _run() -> None:
     args = parser.parse_args()
 
     if args.http:
-        mcp.settings.host = args.host
-        mcp.settings.port = args.port
-        mcp.run(transport="streamable-http")
+        mcp.run(transport="streamable-http", host=args.host, port=args.port)
     else:
         mcp.run(transport="stdio")
 
