@@ -78,37 +78,6 @@ updates:
     reviewers:
       - "rusudinu"
 
-  - package-ecosystem: "uv"
-    directories:
-      - "/other-presentations/devtalks-roundtable/demo/mcp_demo"
-      - "/other-presentations/devtalks-roundtable/demo/mcp_rag_demo"
-      - "/other-presentations/devtalks-roundtable/demo/mcp_rag_demo_web_search"
-      - "/other-presentations/devtalks-roundtable/demo/rag_demo"
-      - "/other-presentations/onia/demo/mcp_demo"
-      - "/other-presentations/onia/demo/mcp_rag_demo"
-      - "/other-presentations/onia/demo/rag_demo"
-    schedule:
-      interval: "weekly"
-      day: "sunday"
-      time: "03:00"
-      timezone: "Europe/Bucharest"
-    groups:
-      minor-and-patch:
-        update-types:
-          - "minor"
-          - "patch"
-        patterns:
-          - "*"
-    open-pull-requests-limit: 10
-    cooldown:
-      default-days: 7
-    labels:
-      - "dependencies"
-      - "dependabot"
-      - "python"
-    reviewers:
-      - "rusudinu"
-
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
