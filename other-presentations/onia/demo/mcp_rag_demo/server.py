@@ -18,7 +18,7 @@ from threading import Lock
 
 import chromadb
 from chromadb.api.types import Documents, EmbeddingFunction, Embeddings
-from mcp.server.fastmcp import FastMCP
+from mcp.server import MCPServer
 from openai import OpenAI
 
 from config import Config, load_config
@@ -26,7 +26,7 @@ from config import Config, load_config
 DOCS_DIR = Path(__file__).parent / "documents"
 COLLECTION_NAME = "onia_mcp_rag_demo"
 
-mcp = FastMCP("onia-mcp-rag-demo")
+mcp = MCPServer("onia-mcp-rag-demo")
 
 _state: dict = {}
 _init_lock = Lock()

@@ -3,10 +3,10 @@
   "private": true,
   "description": "Generators for the Mobile and Embedded Computing lecture decks and lab handouts",
   "dependencies": {
-    "pptxgenjs": "^3.12.0",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
+    "pptxgenjs": "^4.0.1",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
     "react-icons": "^5.0.0",
-    "sharp": "^0.33.0"
+    "sharp": "^0.35.3"
   }
 }
